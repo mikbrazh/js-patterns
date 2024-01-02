@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+    // Замыкание
+    function count(initVal) {
+        let value = initVal;
+        return function() {
+            value++;
+            return value;
+        }
+    }
+
+    let counter1 = count(0);
+    let counter2 = count(5);
+    let counter3 = count('a');
+
+    // console.log('counter1:' + counter1());
+    // console.log('counter1:' + counter1());
+    // console.log('counter1:' + counter1());
+
+    // console.log('counter2:' + counter2());
+    // console.log('counter2:' + counter2());
+
+    // console.log('counter3:' + counter3());
+    // console.log('counter3:' + counter3());
+    // console.log('counter3:' + counter3());
+
+
+    // Function new
+    function User(name, surname) {
+        this.name = name;
+        this.surname = surname;
+
+        // this.showFullName = function() {
+        //     return name + ' ' + surname;
+        // };
+    }
+
+    User.prototype.showFullName = function() {
+        return this.name + ' ' + this.surname;
+    };
+
+    let ivan = new User('Ivan', 'Petrov');
+    let stas = new User('Stas', 'Motrosov');
+
+    console.log(ivan.showFullName());
+    console.log(stas.showFullName());
+
+    console.log(User.prototype.constructor.length);
+
+    // console.log(ivan.isStudent);
+    // console.log(stas.isStudent);
+    // console.log(stas);
+
+    // Class
+    class Person {
+        constructor(name, surname) {
+            this.name = name;
+            this.surname = surname;
+        }
+
+        showFullName() {
+            return this.name + ' ' + this.surname;
+        }
+    }
+
+    let mark = new Person('Mark', 'Abramov');
+    console.log(mark.showFullName());
+    console.log(mark);
+
+    // Литерал объекта
+    let petr = {
+        name: 'Petr',
+        surname: 'Petrov',
+
+        showFullName: function() {
+            return this.name + ' ' + this.surname;
+        },
+    }
+
+    console.log(petr);
+    console.log(petr.showFullName());
+
+
+
+    let instance;
+
+    class Counter {
+        constructor() {
+            if (!instance) {
+                instance = this;
+
+                return instance;
+            }
+        }
+    }
+
+   
+
+
+    let c1 = new Counter();
+    let c2 = new Counter();
+
+     c1.name = 'Vasia';
+    c1.surname = 'Borzov';
+
+    c1.showFullName = function(){
+        return this.name + ' ' + this.surname;
+    }
+
+  c2.name = 'Grisha';
+    c2.surname = 'Borzov';
+
+    c2.showFullName = function(){
+        return this.name + ' ' + this.surname;
+    }
+    console.log(instance);
+    // console.log(instance);
+
+
+
+    let single;
+    class Qwe {
+        constructor() {
+            if (!single) single = this;
+            single.name = 'Tom';
+            single.surname = 'Taylor';
+
+            single.showFullName = function() {
+                return single.name + ' ' + single.surname;
+            }
+
+            return single;
+        }
+    }
+
+
+
+    let asd = new Qwe();
+    console.log(single === asd);
+    console.log(asd.name);
+
+    let zxc = new Qwe();
+    console.log(single === zxc);
+    console.log(zxc.name);
+
+    single.name = 'zzzz';
+    console.log(asd.name);
+    zxc.name = 'ttttt';
+    console.log(zxc.name);
+    console.log(asd.name);
+
+    console.log(asd === zxc);
+    console.log(asd === single);
+    console.log(single === zxc);
+
+
+    // class Ttt {
+    //     constructor() {
+    //         this.name = 'qwe';
+    //     }
+    // }
+
+    // let q = new Ttt();
+    // let a = new Ttt();
+
+    // console.log(q === a);
+
+    let sngl;
+    class Single {
+        constructor() {
+            if (!sngl) sngl = this;
+
+            sngl.counter = 0;
+
+            return sngl;
+        }
+
+        increase() {
+            sngl.counter++;
+        }
+
+        getCounter() {
+            return sngl.counter;
+        }
+}
+
+let x = new Single();
+let v = new Single();
+
+x.increase();
+x.increase();
+x.increase();
+console.log(x.getCounter());
+
+v.increase();
+v.increase();
+v.increase();
+console.log(v.getCounter());
+
+  </script>
+</body>
+</html>
